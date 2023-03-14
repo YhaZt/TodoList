@@ -12,7 +12,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todo = Todo::all();
+        $todo = TodoModel::all();
     }
 
     /**
@@ -29,9 +29,9 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $todo = new TodoModel;
-        $todo->title = request->title;
-        $todo->description = request->description;
-        $todo->status = request->status;
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->status = $request->status;
         $todo->save();
 
         return response()->json(['message' => 'Post created successfully']);
