@@ -22,11 +22,11 @@ import SupportIcon from './icons/IconSupport.vue'
   </thead>
   <tbody>
 
-<tr>
-  <td>{{Title}}</td>
-  <td>{{Description}}</td>
-  <td>{{Status}}</td>
-  <td>{{Action}}</td>
+<tr  v-for="todo in todos" :key="todo.id">
+  <td>{{todo.title}}</td>
+  <td>{{todo.description}}</td>
+  <td>{{todo.status}}</td>
+  <td>{{todo.action}}</td>
 </tr>
 
   </tbody>
