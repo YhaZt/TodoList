@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TodoModel;
+use App\Models\Todo;
 
 class TodoController extends Controller
 {
@@ -28,13 +28,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = new TodoModel;
-        $todo->title = request->title;
-        $todo->description = request->description;
-        $todo->status = request->status;
-        $todo->save();
+        $todo = new Todo;
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->status = $request->status;
+        return $todo->save();
 
-        return response()->json(['message' => 'Post created successfully']);
+        //  response()->json(['message' => 'Post created successfully']);
 
     }
 
