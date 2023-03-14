@@ -1,4 +1,5 @@
 <script setup>
+// import HelloWorld from './components/HelloWorld.vue'
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
@@ -10,6 +11,8 @@ import SupportIcon from './icons/IconSupport.vue'
 <template>
 <div>
   <h1 class = "h1">TODO List</h1>
+  <!-- <router-link to="/HelloWorld">Add Todo</router-link> -->
+  <a href="/HelloWorld">Add Todo</a>
   <br>
   <table style="width:100%">
     <thead>
@@ -39,13 +42,13 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      users: [],
+      todos: [],
     };
   },
   created() {
     axios.get('http:127.0.0.1:8080/api/index')
       .then(response => {
-        this.users = response.data;
+        this.todos = response.data;
       })
       .catch(error => {
         console.log(error);
