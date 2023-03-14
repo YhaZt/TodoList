@@ -12,7 +12,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todo = Todo::all();
+        $todos = Todo::all();
+
+        return response()->json($todos);
     }
 
     /**
@@ -28,10 +30,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = new TodoModel;
-        $todo->title = request->title;
-        $todo->description = request->description;
-        $todo->status = request->status;
+        $todo = new Todo;
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->completed = false;
         $todo->save();
 
         return response()->json($todo);
@@ -76,7 +78,6 @@ class TodoController extends Controller
     public function destroy(string $id)
     {
         Todo::destroy($id);
-
         return response()->json(['message' => 'Todo deleted successfully']);
     }
 }
