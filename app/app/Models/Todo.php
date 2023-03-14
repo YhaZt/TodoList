@@ -11,8 +11,8 @@ class Todo extends Model
     protected $fillable =[
         'title',
         'description',
-        'status'
+        'completed'
     ];
-    protected $table = 'todo';
+    protected $table = 'todos';
     public $timestamps = false;
 }
