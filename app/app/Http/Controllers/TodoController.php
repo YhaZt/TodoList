@@ -12,9 +12,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::all();
-
-        return response()->json($todos);
+        $todo = Todo::all();
     }
 
     /**
@@ -30,10 +28,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = new Todo;
-        $todo->title = $request->title;
-        $todo->description = $request->description;
-        $todo->completed = false;
+        $todo = new TodoModel;
+        $todo->title = request->title;
+        $todo->description = request->description;
+        $todo->status = request->status;
         $todo->save();
 
         return response()->json($todo);
