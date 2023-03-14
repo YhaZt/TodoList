@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TodoModel;
+use App\Models\Todo;
 
 class TodoController extends Controller
 {
@@ -12,7 +12,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todo = TodoModel::all();
+        $todos = Todo::all();
+
+        return response()->json($todos);
     }
 
     /**
@@ -28,13 +30,15 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = new TodoModel;
+        $todo = new Todo;
         $todo->title = $request->title;
         $todo->description = $request->description;
-        $todo->status = $request->status;
+        $todo->completed = false;
         $todo->save();
 
-        return response()->json(['message' => 'Post created successfully']);
+        return response()->json($todo);
+
+        //  response()->json(['message' => 'Post created successfully']);
 
     }
 
@@ -59,7 +63,13 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->completed = $request->completed;
+        $todo->save();
+
+        return response()->json($todo);
     }
 
     /**
@@ -67,6 +77,7 @@ class TodoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Todo::destroy($id);
+        return response()->json(['message' => 'Todo deleted successfully']);
     }
 }
